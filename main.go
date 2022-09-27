@@ -6,6 +6,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -13,6 +14,7 @@ import (
 	"github.com/go-gorp/gorp"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -80,6 +82,10 @@ func main() {
 
 	e := echo.New()
 
+	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
+		fmt.Println(string(reqBody))
+	}))
+
 	// トップページに静的ページを表示
 	e.Static("/", "static/")
 
@@ -103,6 +109,11 @@ func main() {
 		}
 		car.ID = 3
 		return c.JSON(http.StatusCreated, car)
+	})
+
+	e.POST("/webhook", func(c echo.Context) error {
+
+		return c.JSON(http.StatusOK, "")
 	})
 
 	// Listen port
