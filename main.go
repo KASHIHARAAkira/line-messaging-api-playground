@@ -26,7 +26,7 @@ type Car struct {
 
 // SQLite3のデーターベースにテーブルとデータを作成
 func initDb() *gorp.DbMap {
-	db, err := sql.Open("sqlite3", "./db/cars.db") // データベースの接続
+	db, err := sql.Open("sqlite3", "./cars.db") // データベースの接続
 	if err != nil {
 		log.Fatal(err)
 	}
