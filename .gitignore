@@ -1,3 +1,9 @@
+# execution file on ubuntu
+line-messaging-api-playground
+
+# database
+*.db
+
 # Environment information
 .env
 
