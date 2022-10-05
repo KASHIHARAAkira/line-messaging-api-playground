@@ -1,3 +1,7 @@
+# key
+key/
+*.key
+
 # execution file on ubuntu
 line-messaging-api-playground
 
